@@ -1,0 +1,210 @@
+#index {
+  position: relative;
+  height: 100vh;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:before {
+    content: ' ';
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('~assets/images/blog_index_bg.jpg');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .intro {
+    position: relative;
+    height: 100vh;
+    .icon-codestore {
+      display: none;
+      position: fixed;
+      top: 30%;
+      font-size: 80px;
+      color: rgba(206, 206, 196, 1);
+    }
+    h1 {
+      position: fixed;
+      top: 45%;
+      font-size: 30px;
+      opacity: 1;
+    }
+  }
+  .main {
+    height: 5100px;
+    .pc_blog {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      width: 45%;
+      max-width: 585px;
+      border-radius: 6px;
+      box-shadow: inset 0 0 1px rgba(255, 255, 255, .3);
+      background-color: #ccc;
+      transform: translateY(100vh);
+      img {
+        width: 100%;
+        border-radius: 6px;
+      }
+    }
+    .iphonex {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      width: 18%;
+      max-width: 234px;
+      margin-left: -9%;
+      padding: 1% 0;
+      .iphone-frame {
+        width: 100%;
+      }
+      .iphone-viewport {
+        position: absolute;
+        top: 6%;
+        right: 7.5%;
+        width: 85%;
+        background-color: #333;
+        overflow: hidden;
+        border-radius: 1.5vw;
+        .medium-profile-iphone {
+          display: block;
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          border-radius: 4px;
+          img {
+            width: 100%;
+          }
+        }
+        .contact {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: #333;
+          border: 1px solid rgba(255, 255, 255, .2);
+          border-radius: 6px;
+          transform: scale(0.5);
+          .box {
+            text-align: center;
+            transform: rotate(90deg);
+            p {
+              padding-bottom: 10px;
+              font-size: 20px;
+              color: rgba(255, 255, 255, .8);
+            }
+            i {
+              margin: 0 5px;
+              font-size: 40px;
+              color: #fff;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+    .remind-text1 {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      margin-left: -40%;
+      font-size: 24px;
+    }
+    .remind-text2 {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      font-size: 24px;
+      text-align: center;
+      color: #fff;
+    }
+  }
+  .else {
+    position: relative;
+    z-index: 100;
+    .box {
+      position: relative;
+      background-color: #cecec4;
+      &.box1 {
+        height: 70vh;
+      }
+      .weather_box {
+        position: absolute;
+        top: -2vh;
+        left: -1px;
+        z-index: 100;
+        width: 0;
+        height: 0;
+        border-right: 25vw solid transparent;
+        border-top: 72vh solid rgba(255, 255, 255, 0.8);
+        #weather {
+          position: absolute;
+          top: -65vh;
+          width: 20vw;
+        }
+      }
+      .wallpaper {
+        position: relative;
+        width: 100vw;
+        height: 70vh;
+        background-size: cover !important;
+        -webkit-background-size: cover !important;
+        p {
+          padding: 10px 10px 10px 25VW;
+          line-height: 25px;
+          color: rgba(255, 255, 255, 0.7);
+          text-align: right;
+          strong {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+.u_arrow {
+  position: fixed;
+  bottom: 20px;
+  z-index: -1;
+}
+
+@media (min-width: 1300px) {
+  .iphonex {
+    margin-left: -117px !important;
+    .iphone-viewport {
+      border-radius: 14px !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .intro {
+    .icon-codestore {
+      display: block !important;
+    }
+    h1 {
+      font-size: 25px !important;
+    }
+  }
+  .wallpaper>p {
+    >strong {
+      font-size: 16px !important;
+    }
+    >span {
+      font-size: 12px;
+    }
+  }
+  .weather_box {
+    border-right: 30vw solid transparent !important;
+    #weather {
+      width: 22.5vw !important;
+    }
+  }
+}
