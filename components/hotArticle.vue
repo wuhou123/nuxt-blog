@@ -52,7 +52,6 @@
 'use strict'
 import { State } from 'vuex-class'
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
-import { setTimeout } from 'timers'
 
 @Component
 export default class HotArticle extends Vue {

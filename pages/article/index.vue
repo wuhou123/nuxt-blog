@@ -77,9 +77,7 @@ export default class Article extends Vue {
 
   mounted() {
     ;(<any>this).$axios.post('api/getCategoryList').then((res: any) => {
-      if (res.code === 0) {
-        this.categories = res.data
-      }
+      if (res.code === 0) this.categories = res.data
     })
   }
 }

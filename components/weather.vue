@@ -35,13 +35,17 @@ export default class Weather extends Vue {
       }&output=json&ak=cgLTnAd8d2q50s2vAM32yyXsfqchIAix`,
       {},
       (err, data) => {
+        console.log(err)
         let weather_ifno = data.results[0]
-
-        weather_ifno.weather_data[0].date.match(/：(\d*)/)[1]
-        weather_ifno.currentCity = weather_ifno.currentCity.replace(/\S*省/, '')
-        weather_ifno.picture_icon = weather_ifno.weather_data[0].dayPictureUrl.match(
-          /\/([a-z]*)\.png/
-        )[1]
+        if (weather_ifno.weather_data[0].date.match(/：(\d*)/)[1]) {
+          weather_ifno.currentCity = weather_ifno.currentCity.replace(
+            /\S*省/,
+            ''
+          )
+          weather_ifno.picture_icon = weather_ifno.weather_data[0].dayPictureUrl.match(
+            /\/([a-z]*)\.png/
+          )[1]
+        }
 
         this.weather_ifno = weather_ifno
       }

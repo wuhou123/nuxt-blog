@@ -27,7 +27,7 @@
 
 <script lang='ts'>
 'use strict'
-import { Vue, Component, Watch } from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 import { State } from 'vuex-class'
 import headerBox from '~/components/header.vue'
 import footerBox from '~/components/footer.vue'
@@ -35,20 +35,20 @@ import articleList from '~/components/articleList.vue'
 
 @Component({
   async asyncData(app: any) {
-    let query = app.query,
-      data = await app.$axios
-        .post('api/getArticlesList', {
-          page: Number(query.page) || 1,
-          release: true,
-          ...(query._s && { '_s': query._s }),
-          ...(query.Tag && { 'Tag': query.Tag }),
-          ...(query.Category && { 'Category': query.Category })
-        })
-        .then(res => {
-          if (res.code === 0) {
-            return res.data
-          }
-        })
+    let query = app.query
+    let data = await app.$axios
+      .post('api/getArticlesList', {
+        page: Number(query.page) || 1,
+        release: true,
+        ...(query._s && { _s: query._s }),
+        ...(query.Tag && { Tag: query.Tag }),
+        ...(query.Category && { Category: query.Category })
+      })
+      .then((res: any) => {
+        if (res.code === 0) {
+          return res.data
+        }
+      })
 
     return {
       article_info: data
@@ -80,7 +80,7 @@ export default class SearchResult extends Vue {
   mounted() {
     // 判断 搜索记录是否存在
     if (!this.search.text) {
-      for (var i in this.$route.query) {
+      for (let i in this.$route.query) {
         this.routeQuery = {
           type: i,
           text: this.$route.query[i]

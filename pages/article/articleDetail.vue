@@ -74,12 +74,12 @@ const md = new Remarkable()
     }
   },
   async asyncData(app: any) {
-    let data = await app.$axios
+    const data: any = await app.$axios
       .post('api/getArticlesDetail', {
         _id: app.query.id,
         release: true
       })
-      .then(res => {
+      .then((res: any) => {
         if (res.code === 0) {
           return res.data
         }
@@ -143,7 +143,7 @@ export default class ArticleContent extends Vue {
    * 获取文章详情
    */
   getArticleDetail() {
-    let param = this.articleDetail
+    const param = this.articleDetail
 
     this.headerData.image = {
       src: param.image_src,
@@ -156,12 +156,12 @@ export default class ArticleContent extends Vue {
 
       this.$nextTick(() => {
         // 生成文章目录
-        let catalog = [],
-          markDown: any = this.$refs.markDown
+        const catalog = []
+        const markDown: any = this.$refs.markDown
 
         for (let i of markDown.getElementsByTagName('*')) {
-          let tag = i.tagName,
-            text = i.innerHTML
+          let tag = i.tagName
+          let text = i.innerHTML
 
           if (/h2|h3|h4/i.test(i.tagName)) {
             i.setAttribute('id', text)
@@ -173,8 +173,8 @@ export default class ArticleContent extends Vue {
 
         // 如果路由存在标坐标 直接跳到对应位置
         setTimeout(() => {
-          let path = this.$route.fullPath,
-            index = path.indexOf('#')
+          let path = this.$route.fullPath
+          let index = path.indexOf('#')
 
           if (index !== -1) {
             this.cagatogSkip(decodeURI(path.slice(index + 1)), 'init')
@@ -193,8 +193,8 @@ export default class ArticleContent extends Vue {
    * @param {String} type - 跳转类型  init：初始化
    */
   cagatogSkip(title: string, type: string) {
-    let parent_top = 458,
-      offsetTop = document.getElementById(title).offsetTop
+    let parent_top = 458
+    let offsetTop = document.getElementById(title).offsetTop
 
     this.scrollToPosition(parent_top + offsetTop)
 
@@ -212,11 +212,11 @@ export default class ArticleContent extends Vue {
     // 文章目录列表 初始化
     if (type === 'init') {
       setTimeout(() => {
-        let offsetHeight = document.documentElement.offsetHeight,
-          clientHeight = document.documentElement.clientHeight,
-          footer_height = document.getElementById('footer').offsetHeight,
-          scrollTop =
-            document.documentElement.scrollTop || document.body.scrollTop
+        let offsetHeight = document.documentElement.offsetHeight
+        let clientHeight = document.documentElement.clientHeight
+        let footer_height = document.getElementById('footer').offsetHeight
+        let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop
 
         this.catalog_fixed = !(
           offsetHeight - clientHeight - footer_height <
@@ -235,14 +235,15 @@ export default class ArticleContent extends Vue {
       return false
     }
 
-    let index = this.catalog_index,
-      text = this.markDownCatalog[this.catalog_index].text,
-      footer_height = document.getElementById('footer').offsetHeight,
-      ref_top = document.getElementById(text).offsetTop,
-      offsetHeight = document.documentElement.offsetHeight,
-      clientHeight = document.documentElement.clientHeight,
-      parent_top = 458,
-      scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    let index = this.catalog_index
+    let text = this.markDownCatalog[this.catalog_index].text
+    let footer_height = document.getElementById('footer').offsetHeight
+    let ref_top = document.getElementById(text).offsetTop
+    let offsetHeight = document.documentElement.offsetHeight
+    let clientHeight = document.documentElement.clientHeight
+    let parent_top = 458
+    let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop
 
     this.scrollTopStatus = scrollTop > 0
 

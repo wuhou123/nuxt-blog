@@ -114,7 +114,6 @@
 'use strict'
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { State } from 'vuex-class'
-import { constants } from 'fs';
 
 @Component
 export default class Header extends Vue {
@@ -195,7 +194,7 @@ export default class Header extends Vue {
   }
 
   searchFn() {
-    if (this.searchCnt && this.searchCnt != this.search.text) {
+    if (this.searchCnt && this.searchCnt !== this.search.text) {
       let data = {
         type: '_s',
         text: this.searchCnt
@@ -222,24 +221,22 @@ export default class Header extends Vue {
         if (this.menuSwitch) this.menuSwitch = false
 
         let afterScrollTop =
-            document.documentElement.scrollTop || document.body.scrollTop,
-          delta = afterScrollTop - beforeScrollTop
+          document.documentElement.scrollTop || document.body.scrollTop
+        let delta = afterScrollTop - beforeScrollTop
 
         beforeScrollTop = afterScrollTop
 
         if (afterScrollTop <= 50) {
           this.scrollStatus = ''
-        } else {
-          if (delta > 0 || delta <= -3) {
-            if (!window.scrollSkip) {
-              let type = delta > 0 ? 'down' : 'up'
+        } else if (delta > 0 || delta <= -3) {
+          if (!window.scrollSkip) {
+            let type = delta > 0 ? 'down' : 'up'
 
-              if (this.scrollStatus !== type) {
-                this.scrollStatus = type
-              }
-            } else {
-              this.scrollStatus = 'down'
+            if (this.scrollStatus !== type) {
+              this.scrollStatus = type
             }
+          } else {
+            this.scrollStatus = 'down'
           }
         }
       },
@@ -248,7 +245,7 @@ export default class Header extends Vue {
   }
 
   imgLoad(type) {
-    this.headerData.image.status = type == 'load' ? 1 : 0
+    this.headerData.image.status = type === 'load' ? 1 : 0
   }
 }
 </script>
